@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+- 2.2.2
+- 1.9.3
+- jruby-19mode
+- rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: hxZvFHPZ5LksifbuGfjRITZYP/ioSytVHkGjrpKW2TodLht5aybXj6updJOVdcjY8BxfJC17oxx3Opuy2hQzBJedCxzfYJ5aLxVkuFHbR6m9ppzfoWp7WbWcITrd6ZWCqJb8bzLyNx7pkYViwtCHcFXvKMQgohSsg6DDGUugnqbz2UhUvXo3NB6jBqeODxnY6/7VHRU09NB0j2DLybBzAeh1WAWbCF09JrsTs95LzuGUy6lnt83ygteijiLaXwTPCSGn3t24VdM263fimhaqy9SmILR3SJxcMzuHmnFGeE6mWPvqWOUR5rAbyR67o7RkesWvuWwn8U+T62CNEs/cSo/G939lDs968BdT+I9mD7ygWHN/uxVE+LcwC8f3kNDa5Ynm6r2qhOzwnHL9DVG0JG7U1jLEOWM86dmLGGRXVKTDlkv46eHDVRpu+nar6ZljC4b7qzvPbaeWjQePeAR10vxFve8a3MjFABReiDy4CK9tnLJy3QqWjbEmSHa1DRRIzB9psOMo1C8kkn2X0FWkbRAPgBGkA8LDT6/ItfS2/hTIEvieLRqFl3qfgRvR6dePnxZuS3HEtcTJWbQbSGXxjDhM1ZlAU6lSf64X/kOEAs+IOfw1+ph+B2S7CIS7NMOCHxB7TWzJZA4CYPdpQi5cHCdVKnj+c1kLmWu8bY8Kdvk=
+  app: obscure-tundra-6610
+  on:
+    repo: yosukeiseki/rails_enpit
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
